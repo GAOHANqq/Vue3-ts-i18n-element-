@@ -1,0 +1,68 @@
+/* 改变主题色变量 */
+$--color-primary: #3e73f6;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-plus/lib/theme-chalk/fonts';
+
+.el-form-item{
+    margin-bottom: 32px !important;
+}
+.el-input__inner{
+    height: 50px !important;
+    line-height: 50px !important;
+}
+
+.el-button.is-round {
+    margin-top: 5px !important;
+}
+.el-form-item__label{
+    line-height: 50px !important;
+}
+
+.el-dialog__headerbtn {
+    top: 6px !important;
+    right: 12px !important;
+}
+
+.el-dialog__header{
+    text-align: center !important;
+}
+.el-dialog__title {
+    color: #333333 !important;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.el-dialog__body {
+    padding: 30px 28px !important;
+}
+// .el-dropdown{
+//     color: #fff!important;
+// }
+.el-checkbox{
+    line-height: 48px;
+}
+.el-menu-item{
+    height: 50px !important;
+    line-height: 50px !important;
+    font-size: 18px !important;
+}
+.el-menu-item.is-active{
+    background: #e6f7ff;
+    border-left: 6px solid #3ac6ff;
+    color: #0078ff;
+}
+
+.el-submenu__title{
+    height: 50px !important;
+    line-height: 50px !important;
+    font-size: 18px !important;
+}
+
+.el-breadcrumb{
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f5f5f5;
+    margin-bottom: 15px;
+}
+
+// 引入element-plus 默认样式
+@import "~element-plus/packages/theme-chalk/src/index";

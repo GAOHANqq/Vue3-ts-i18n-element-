@@ -1,0 +1,193 @@
+﻿@charset "utf-8";
+/* CSS Document */
+@charset "utf-8";
+
+html { color:#454545; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+html,body,#app{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin:0; padding:0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display:block; }
+
+audio, canvas, video { display: inline-block; *display: inline;
+*zoom: 1;
+}
+
+body, button, input, select, textarea { font:16px/1.5  微软雅黑, \5b8b\4f53; }
+
+input, select, textarea { font-size:100%; }
+
+table { border-collapse:collapse; border-spacing:0; }
+
+th { text-align:inherit; }
+
+fieldset, img { border:0; }
+
+iframe { display:block; }
+
+abbr, acronym { border:0; font-variant:normal; }
+
+del { text-decoration: none;}
+
+address, caption, cite, code, dfn, em, th, var { font-style:normal; font-weight:500; }
+
+ol, ul { list-style:none; }
+
+caption, th { text-align:left; }
+
+/*h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:500; }*/
+
+q:before, q:after { content:''; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+a:hover { text-decoration:underline; }
+
+ins, a { text-decoration:none; }
+
+.clearfix:after { visibility:hidden; display:block; font-size:0; content:" "; clear:both; height:0; }
+
+.clearfix { clear:both; padding:0; margin:0; border:0; height:0; line-height:0 }
+
+.fn-left, .fn-right { display:inline; }
+
+.fn-left { float:left; }
+
+.fn-right { float:right; }
+
+.none { display: none; }
+
+input, div, textarea { outline: 0; outline: none; }
+
+a { color:#323232; text-decoration:none;}
+
+a:hover{ text-decoration:none;}
+
+.ui_alert{ border: solid 1px #F5F5F5; border-top: solid 1px #F1F1F1; border-left: solid 1px #F1F1F1; background-color: #F7F7F7; width: 156px; height: 46px; margin: 0px auto; background: -moz-linear-gradient(top,#FAFAFA,#E3E3E3); background: -webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#E3E3E3)); border-radius: 8px; box-shadow: 3px 3px 4px #AAA; }
+
+/*校本题库下划线最小宽度设置*/
+u {
+  display: inline-block;
+  text-decoration: none;
+  min-width: 40px;
+  height: auto;
+  border-bottom: 1px solid;
+  vertical-align: text-bottom;
+}
+/*.ui_alert .ui_msg{ background: url(../images/work/ui-alert.png) no-repeat center left; margin: 0px 15px; padding: 10px 8px 10px 40px; line-height: 25px; color: #8C5507; font-size: 15px; font-weight: bold; }*/
+
+textarea:disabled{background-color: #fff;}
+/*禁止图片拖拽*/
+ img {
+   -webkit-user-drag: none;
+ }
+/*滚动条样式*/
+/*滚动条整体部分*/
+::-webkit-scrollbar {
+    /*background: rgba(248, 249, 252, 1);*/
+    width: 12px;
+}
+
+/*滚动条两端的按钮*/
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/*外层轨道*/
+::-webkit-scrollbar-track {
+}
+
+/*内层轨道，滚动条中间部分（除去）*/
+::-webkit-scrollbar-track-piece {
+}
+
+/*拖动条*/
+::-webkit-scrollbar-thumb {
+    background: #c8cee1;
+    border-radius: 8px;
+}
+
+/*边角*/
+::-webkit-scrollbar-corner {
+}
+
+/*定义右下角拖动块的样式*/
+::-webkit-resizer {
+}
+
+/*清除浮动*/
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/*溢出文字省略号显示*/
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*蓝色小点*/
+.blueDot:before{
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 100%;
+  min-height: 18px;
+  margin-right: 12px;
+  border-radius:3px;
+  vertical-align: sub;
+  background-color: #3E73F6;
+}
+.blueDot.blueDot-circle:before{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  min-height: 8px;
+  vertical-align: middle;
+}
+.no-data{
+  background-color: #fff;
+}
+.no-data p{
+  width: 100%;
+  color: rgba(165,172,189,1);
+}
+
+/*模拟光标*/
+.animation::after {
+  content:'';
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width:2px;
+  height:16px;
+  animation: blink 1s infinite steps(1, start)
+}
+@keyframes blink {
+  0%{
+    background-color: white;
+  }
+  50% {
+    background-color: #3E73F6;
+  }
+  100% {
+    background-color: white;
+  }
+}
