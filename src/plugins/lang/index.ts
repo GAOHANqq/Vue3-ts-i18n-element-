@@ -1,14 +1,8 @@
 import {createI18n} from 'vue-i18n'
 import {lang} from '@/config/globalConfig';
-import elementEnLocale from 'element-plus/lib/locale/lang/en';
-import elementZhLocale from 'element-plus/lib/locale/lang/zh-cn';
-import enLocale from './en';
-import zhLocale from './zh';
-
-const messages = {
-  en: Object.assign(enLocale, elementEnLocale),
-  zh: Object.assign(zhLocale, elementZhLocale)
-};
+import en from 'element-plus/lib/locale/lang/en';
+import zh from 'element-plus/lib/locale/lang/zh-cn';
+const messages = {en, zh};
 const getLanguage = () => {
   const navigator:any = window.navigator;
   const language:string = (navigator.language || navigator.userLanguage|| navigator.browserLanguage).toLowerCase();
@@ -25,8 +19,6 @@ const i18n = createI18n({
   messages
 });
 
-
-// ElementLocale.i18n((path: string, option?: any) => i18n.global.t(path, option))
 export default (app:any)=>{
   app.use(i18n);
 };

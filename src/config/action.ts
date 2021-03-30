@@ -40,8 +40,8 @@
   LOGOUT = "LOGOUT",
   /** 注册 */
   REGISTER = "REGISTER",
-
-
+  /** 设置语言 */
+  SET_LANGUAGE = 'SET_LANGUAGE',
   /*******************[end]文章行为*****************************/
 
 

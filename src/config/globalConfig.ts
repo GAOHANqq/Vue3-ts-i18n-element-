@@ -5,6 +5,9 @@
  * @LastEditTime: 2021/3/17
  */
 /** 全局公用url */
+import Cookie from 'js-cookie'
+
+
 export enum URL_TYPE{
   /** baseurl */
   // baseUrl = 'https://service.xjjswh.cn',
@@ -17,4 +20,4 @@ export enum URL_TYPE{
   RESUME = 'https://resume.xjjswh.cn'
 };
 /** 语言 */
-export const lang:string = 'zh-cn';
+export const lang:string = Cookie.get('language')|| 'zh';
