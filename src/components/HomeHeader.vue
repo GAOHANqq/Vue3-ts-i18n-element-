@@ -5,6 +5,17 @@
       <li v-for="item in linkList" :key="item.id">
         <a class="nav" @click="switchPage(item)">{{item.text}}</a>
       </li>
+      <el-dropdown split-button type="primary" size="small" @command="toggleLanguage">
+        {{$t('header.changeLanguage')}}
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+              v-for="item in availableLocales"
+              :key="item"
+              :command="item">{{item}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </ul>
 
     <!--登录,注册-->
@@ -27,6 +38,8 @@
       </el-col>
     </el-row>
 
+
+    <!--登录弹窗-->
     <login
       :isShow="isShowLoginView"
       @close-login="toggleloginView(false)"
@@ -35,18 +48,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs ,inject} from "vue";
+import {computed, defineComponent, reactive, ref, toRefs, inject, onMounted, getCurrentInstance} from "vue";
 import login from '@/components/login/index.vue'
 import {useStore} from 'vuex'
 import {useRouter} from 'vue-router'
 import {IStoreModel} from '@/interface/store'
 import {INavModel} from '@/interface/home'
-
+import {ACTION_TYPE} from '@/config/action';
+import {header} from '@/lang/local/header'
+import {mergeLanguage,availableLocales} from '@/lang'
 export default defineComponent({
   components:{
     login
   },
-  setup(props, context) {
+  setup(Proxy, context) {
     const store = useStore<IStoreModel>();
     const router = useRouter();
     const $messageBox:any = inject('$messageBox');
@@ -62,7 +77,8 @@ export default defineComponent({
         {url: 'https://www.xjjswh.cn', text: 'qq', id: 3},
         {url: 'https://www.xjjswh.cn', text: '微信', id: 4},
         {url: 'https://github.com/GAOHANqq', text: 'github', id: 5}
-      ]
+      ],
+      availableLocales
     });
 
     // 页面切换
@@ -72,6 +88,11 @@ export default defineComponent({
     // 登录弹窗切换
     const toggleloginView = (isShow:boolean)=>{
       state.isShowLoginView = isShow
+    };
+    // 语言切换
+    const toggleLanguage = (lang:string)=>{
+      store.commit(ACTION_TYPE.SET_LANGUAGE,lang);
+      router.go(0);
     };
     // 登出
     const loginOut = ()=>{
@@ -88,12 +109,15 @@ export default defineComponent({
       router.push({name: 'register'});
     };
 
+    mergeLanguage(header)
+
     return {
       ...toRefs(state),
       switchPage,
       toggleloginView,
       goToRegister,
-      loginOut
+      loginOut,
+      toggleLanguage
     };
   }
 });

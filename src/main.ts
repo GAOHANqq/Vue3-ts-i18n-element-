@@ -1,11 +1,11 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import App from '@/App.vue';
+import router from '@/router';
+import store from '@/store';
 
-import installElementPlus from './plugins/element-plus';
-import installMdEditor from './plugins/md-editor';
-import installI18n from './plugins/lang';
+import installElementPlus from '@/plugins/element-plus';
+import installMdEditor from '@/plugins/md-editor';
+import installI18n from '@/lang';
 import './assets/styles/base.css';
 import Cookie from 'js-cookie';
 import {isNullOrUndefined} from "@/utils";

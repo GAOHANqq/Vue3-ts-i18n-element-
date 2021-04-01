@@ -2,7 +2,6 @@
 import {IStoreModel, IBaseModel} from '@/interface/store';
 import {lang} from '@/config/globalConfig';
 import {ACTION_TYPE} from '@/config/action';
-import Cookie from 'js-cookie'
 const state:IBaseModel = {lang};
 const base:Module<IBaseModel,IStoreModel> = {
   state: Object.assign({},state),
@@ -12,7 +11,7 @@ const base:Module<IBaseModel,IStoreModel> = {
   mutations: {
     [ACTION_TYPE.SET_LANGUAGE](state,lang){
       state.lang = lang
-      Cookie.set('language',lang)
+      sessionStorage.setItem('language',lang)
     }
   },
   getters:{
