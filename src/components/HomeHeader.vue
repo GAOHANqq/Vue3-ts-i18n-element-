@@ -74,7 +74,7 @@ export default defineComponent({
       linkList: [
         {url: 'https://www.xjjswh.cn', text: '首页', id:1},
         {url: 'https://blog.xjjswh.cn', text: '博客', id: 2},
-        {url: 'https://www.xjjswh.cn', text: 'qq', id: 3},
+        {url: 'https://www.xjjswh.cn', text: '留言板', id: 3},
         {url: 'https://www.xjjswh.cn', text: '微信', id: 4},
         {url: 'https://github.com/GAOHANqq', text: 'github', id: 5}
       ],

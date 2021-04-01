@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, toRefs, reactive, onMounted, ref, onBeforeUnmount} from 'vue'
+import {defineComponent, toRefs, reactive, onMounted, ref, onBeforeUnmount, computed} from 'vue'
 import {useStore} from "vuex";
 import {IStoreModel} from "@/interface/store";
 import {useRoute} from "vue-router";
@@ -34,7 +34,7 @@ export default defineComponent({
       // 缓存id
       cacheId: `${store.getters.userid}_${route.params.id}_article`,
       // 文章详情
-      article: store.state.article,
+      article: computed(()=>{return store.state.article}),
       // 是否展示编辑弹窗
       isShowEditView: ref(false),
       // 是否展示编辑按钮

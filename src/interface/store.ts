@@ -14,6 +14,8 @@ export interface IStoreModel{
   base: IBaseModel;
   /** 文章 */
   article: IArticleState;
+  /** 留言 */
+  message: IMessageStore;
 }
 /** 权限模型 */
 export interface IPermModel{
@@ -39,4 +41,21 @@ export interface IUserModel{
 export interface IBaseModel{
   /** 当前语言 */
   lang: string
+}
+/** 留言模型 */
+export interface IMessageModel{
+  /** 留言id */
+  id: number;
+  /** 留言内容 */
+  message: string;
+  /** 创建时间 */
+  created_time: string;
+  /** 用户id */
+  user_id: string;
+  /** 用户名称 */
+  user_name: string;
+}
+export interface IMessageStore extends IMessageModel{
+  /** 留言列表 */
+  messageList: Array<IMessageModel>
 }
