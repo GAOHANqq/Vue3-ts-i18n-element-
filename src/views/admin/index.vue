@@ -1,5 +1,5 @@
 ﻿<template>
-  <el-row class="admin-nav">
+  <el-row class="admin-main">
     <!--导航-->
     <el-col :span="4">
       <el-menu
@@ -14,8 +14,9 @@
     </el-col>
 
     <!--右侧区域-->
-    <el-col :span="16">
-      <el-main>
+    <el-col :span="20">
+      <router-view v-if="isShowAddView"></router-view>
+      <el-main v-else>
         <!--头部-->
         <el-row type="flex" justify="space-between" align="middle">
           <el-col :span="12">
@@ -38,23 +39,26 @@
         <el-table
           v-if="curNav==='1'"
           :data="navList[0].data"
-          style="width: 100%">
+          style="width: 100%"
+          :cell-style="{textAlign: 'center'}"
+          :header-cell-style="{textAlign: 'center'}"
+        >
           <el-table-column
             prop="name"
             label="分类名称"
-            width="180">
+            >
           </el-table-column>
           <el-table-column
             prop="article_num"
             label="文章数量"
-            width="180">
+            >
           </el-table-column>
           <el-table-column
             label="操作"
           >
             <el-button-group>
-              <el-button size="small">编辑</el-button>
-              <el-button size="small" type="danger">删除</el-button>
+              <el-button size="small" @click="editFn('1')">编辑</el-button>
+              <el-button size="small" type="danger" @click="deleteFn('1')">删除</el-button>
             </el-button-group>
           </el-table-column>
         </el-table>
@@ -62,23 +66,26 @@
         <el-table
           v-else-if="curNav==='2'"
           :data="navList[1].data"
-          style="width: 100%">
+          style="width: 100%"
+          :cell-style="{textAlign: 'center'}"
+          :header-cell-style="{textAlign: 'center'}"
+        >
           <el-table-column
             prop="name"
             label="标签名称"
-            width="180">
+           >
           </el-table-column>
           <el-table-column
             prop="created_time"
             label="创建时间"
-            width="180">
+           >
           </el-table-column>
           <el-table-column
             label="操作"
           >
             <el-button-group>
-              <el-button size="small">编辑</el-button>
-              <el-button size="small" type="danger">删除</el-button>
+              <el-button size="small" @click="editFn('2')">编辑</el-button>
+              <el-button size="small" type="danger" @click="deleteFn('2')">删除</el-button>
             </el-button-group>
           </el-table-column>
         </el-table>
@@ -86,23 +93,26 @@
         <el-table
           v-else-if="curNav==='3'"
           :data="navList[2].data"
-          style="width: 100%">
+          style="width: 100%"
+          :cell-style="{textAlign: 'center'}"
+          :header-cell-style="{textAlign: 'center'}"
+        >
           <el-table-column
             prop="title"
             label="文章名称"
-            width="180">
+           >
           </el-table-column>
           <el-table-column
             prop="created_time"
             label="创建时间"
-            width="180">
+          >
           </el-table-column>
           <el-table-column
             label="操作"
            >
             <el-button-group>
-              <el-button size="small">编辑</el-button>
-              <el-button size="small" type="danger">删除</el-button>
+              <el-button size="small" @click="editFn('3')">编辑</el-button>
+              <el-button size="small" type="danger" @click="deleteFn('3')">删除</el-button>
             </el-button-group>
           </el-table-column>
         </el-table>
@@ -145,7 +155,6 @@
           </el-col>
         </el-row>
       </el-main>
-      <router-view></router-view>
     </el-col>
 
   </el-row>
@@ -160,10 +169,10 @@ import {getCategoryList} from '@/hooks/category'
 import {getTagsList} from '@/hooks/tag'
 import {validateUserName} from "@/utils/validate";
 import {ACTION_TYPE} from "@/config/action";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 export default defineComponent({
   components: {},
-  setup() {
+  setup(props, ctx) {
     const store = useStore<IStoreModel>()
     const state = reactive({
       // 导航列表
@@ -171,7 +180,7 @@ export default defineComponent({
         {
           id: '1',
           name: '分类管理',
-          data: computed(()=>{return store.state.category.categiryList}),
+          data: computed(()=>{return store.state.category.categoryList}),
           icon: 'el-icon-s-flag'
         },
         {
@@ -210,14 +219,18 @@ export default defineComponent({
         ]
       },
       // 用户头像
-      avatar: computed(()=>{return store.state.user.avatar})
-
+      avatar: computed(()=>{return store.state.user.avatar}),
+      isShowAddView: ref(false)
     })
     const userFormRef = ref<any>(null)
     const router = useRouter()
-
+    const route = useRoute()
     const switchNav = (index:number,path:any)=>{
       state.curNav = path[0]
+      if( state.isShowAddView ){
+        router.back()
+        state.isShowAddView = false
+      }
     }
 
     // 获取列表
@@ -229,7 +242,6 @@ export default defineComponent({
     // 保存信息
     const saveUserInfo = ()=>{
       userFormRef.value.validate((valid:boolean)=>{
-
         if( valid ){
           // store.dispatch('ACTION_TYPE.SAVE',state.form).then(()=>{
           //
@@ -243,9 +255,41 @@ export default defineComponent({
     };
     // 添加文章
     const addArticle = ()=>{
+      state.isShowAddView = true
       router.push({name:'add'})
+
     };
 
+    // 编辑
+    const editFn = (type:string)=>{
+      switch(type){
+        case "1":
+          break;
+        case "2":
+          break;
+        case "3":
+          break;
+        case "4":
+          break;
+        default:
+          break;
+      }
+    }
+    // 删除
+    const deleteFn = (type:string)=>{
+      switch(type){
+        case "1":
+          break;
+        case "2":
+          break;
+        case "3":
+          break;
+        case "4":
+          break;
+        default:
+          break;
+      }
+    }
 
     onMounted(()=>{
       getList({user_id:1})
@@ -258,12 +302,17 @@ export default defineComponent({
       switchNav,
       beforeUpload,
       addArticle,
-      saveUserInfo
+      saveUserInfo,
+      editFn,
+      deleteFn
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-
+.admin-main{
+  height: 100%;
+  overflow-y: auto;
+}
 </style>

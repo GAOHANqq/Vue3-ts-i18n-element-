@@ -69,5 +69,5 @@ export interface ITagStore extends ITagModel{
 }
 /** 分类模型 */
 export interface ICategoryStore extends ICategoryModel{
-  categiryList: Array<ICategoryModel>
+  categoryList: Array<ICategoryModel>
 }

@@ -8,7 +8,7 @@ const state:ICategoryStore = {
   created_time: -1,
   user_id: -1,
   article_num: 0,
-  categiryList: []
+  categoryList: []
 };
 const category:Module<ICategoryStore,IStoreModel> = {
   state: Object.assign({},state),
@@ -22,8 +22,8 @@ const category:Module<ICategoryStore,IStoreModel> = {
     }
   },
   mutations: {
-    [ACTION_TYPE.SET_CATEGORY_LIST](state,categiryList){
-      state.categiryList = categiryList
+    [ACTION_TYPE.SET_CATEGORY_LIST](state,categoryList){
+      state.categoryList = categoryList
     }
   }
 };

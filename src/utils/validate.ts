@@ -15,6 +15,13 @@ const validateUserName = (role:any, value:string, cb: Function): void =>{
     cb()
   }
 }
+const validateTitle = (role:any, value:string, cb: Function): void =>{
+  if( isNullOrUndefined(value) ){
+    cb(new Error('标题不可为空!'))
+  }else{
+    cb()
+  }
+}
 // 验证手机号
 const validateMobile = (rule:any, value:string, callback:any): void => {
     value = value.trim();
@@ -44,6 +51,7 @@ const checkNumber = (rule:any, value:string, callback:any) : void => {
 export {
   validatePassWord,
   validateUserName,
+  validateTitle,
   validateMobile,
   checkNumber
 }
