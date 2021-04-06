@@ -14,8 +14,12 @@
   GET_TAGS_LIST = 'GET_TAGS_LIST',
   // 根据标签获取文章
   GET_ARTICLE_BY_TAG = 'GET_ARTICLE_BY_TAG',
+  /** 获取分类列表 */
+  GET_CATEGORY_LIST = 'GET_CATEGORY_LIST',
   // 设置文章列表
   SET_ARTICLE_LIST = 'SET_ARTICLE_LIST',
+  // 设置分类列表
+  SET_CATEGORY_LIST = 'SET_CATEGORY_LIST',
   /** 设置标签列表 */
   SET_TAGS_LIST = 'SET_TAGS_LIST',
   // 编辑文章

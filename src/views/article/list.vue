@@ -35,6 +35,7 @@ import {useRouter} from "vue-router";
 import {IArticleModel, ITagModel} from "@/interface/home";
 import {ACTION_TYPE} from "@/config/action";
 import Empty from '@/components/Empty.vue'
+import {getArticlesList} from '@/hooks/article'
 export default defineComponent({
   components:{
     Empty
@@ -44,12 +45,12 @@ export default defineComponent({
     const router = useRouter();
 
     const state = reactive({
-      articleList: computed(()=>{return store.getters.articleList}),
-      tagList: computed(()=>{return store.getters.tagList})
+      articleList: computed(()=>{return store.state.article.articleList}),
+      tagList: computed(()=>{return store.state.tag.tagList})
     })
     // 获取文章列表
     const getList = (param:any)=>{
-      store.dispatch(ACTION_TYPE.GET_ARTICLE_LIST,param)
+      getArticlesList(store,param)
     }
     // 根据分类获取文章
     const getListByCate = (param:IArticleModel)=>{

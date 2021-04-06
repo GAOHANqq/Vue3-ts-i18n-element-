@@ -19,8 +19,7 @@ const state:IArticleState = {
   updated_time:-1,
   category_id: -1,
   user_id: -1,
-  articleList:[],
-  tagList:[]
+  articleList:[]
 };
 const article:Module<IArticleState,IStoreModel> = {
   state: Object.assign({},state),
@@ -68,9 +67,6 @@ const article:Module<IArticleState,IStoreModel> = {
     [ACTION_TYPE.SET_ARTICLE_LIST](state,list){
       state.articleList = list
     },
-    [ACTION_TYPE.SET_TAGS_LIST](state,list){
-      state.tagList = list
-    },
     [ACTION_TYPE.EDIT_ARTICLE_OK](state,data){
       // 编辑信息
     },
@@ -79,8 +75,7 @@ const article:Module<IArticleState,IStoreModel> = {
     }
   },
   getters:{
-    articleList(state){return state.articleList},
-    tagList(state){return state.tagList}
+
   }
 };
 export default article;

@@ -32,6 +32,23 @@ const router = createRouter({
       name: 'message',
       path: '/message',
       component: () => import('../views/message/index.vue')
+    },
+    {
+      name: 'personal',
+      path: '/personal',
+      component: () => import('../views/personal/index.vue')
+    },
+    {
+      name: 'admin',
+      path: '/admin',
+      component: () => import('../views/admin/index.vue'),
+      children: [
+        {
+          name: 'add',
+          path: 'add',
+          component: () => import('../views/article/add.vue')
+        }
+      ]
     }
   ]
 })

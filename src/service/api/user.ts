@@ -11,4 +11,9 @@ export const login = (params: {username: string, password: string})=>{
 export const register = (params: {username: string, password: string})=>{
   return API.POST('users/register', params);
 }
+// 获取STS授权
+export const getSTSToken = (params: any)=>{
+  return API.POST('users/getSTSToken', params);
+}
+
 

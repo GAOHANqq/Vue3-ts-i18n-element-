@@ -10,7 +10,6 @@
         v-for="item in messageList"
         :key="item.id"
       >
-
         <!--头像-->
         <el-avatar :size="25">
           <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
@@ -18,10 +17,9 @@
         <!--用户名称-->
         <el-tag type="info" size="mini">{{item.user_name}}:</el-tag>
         <!--留言-->
-        <p v-html="item.message" ></p>
+        <p v-html="item.message"></p>
       </el-row>
     </el-row>
-
   </div>
 </template>
 
@@ -31,10 +29,8 @@ import {useStore} from "vuex";
 import {IStoreModel} from "@/interface/store";
 import {ACTION_TYPE} from "@/config/action";
 export default defineComponent({
-  components: {},
   setup() {
     const store = useStore<IStoreModel>()
-
 
     const state = reactive({
       messageList: computed(()=>{return store.state.message.messageList})
@@ -57,6 +53,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.message-view{
+  overflow-y: scroll;
+  height: 100%;
+}
 .message-item{
   width: 100%;
   margin: 5px 10px;

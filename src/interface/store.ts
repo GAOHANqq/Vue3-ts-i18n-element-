@@ -1,9 +1,8 @@
 ﻿/** store模型 */
-import {IArticleModel, ITagModel} from "@/interface/home";
+import {IArticleModel, ICategoryModel, ITagModel} from "@/interface/home";
 export interface IArticleState extends IArticleModel{
   /** 文章列表 */
   articleList: Array<IArticleModel>
-  tagList: Array<ITagModel>
 }
 export interface IStoreModel{
   /** 权限 */
@@ -14,6 +13,10 @@ export interface IStoreModel{
   base: IBaseModel;
   /** 文章 */
   article: IArticleState;
+  /** 标签 */
+  tag: ITagStore;
+  /** 分类 */
+  category: ICategoryStore;
   /** 留言 */
   message: IMessageStore;
 }
@@ -42,7 +45,7 @@ export interface IBaseModel{
   /** 当前语言 */
   lang: string
 }
-/** 留言模型 */
+/** 留言信息模型 */
 export interface IMessageModel{
   /** 留言id */
   id: number;
@@ -55,7 +58,16 @@ export interface IMessageModel{
   /** 用户名称 */
   user_name: string;
 }
+/** 留言模型 */
 export interface IMessageStore extends IMessageModel{
   /** 留言列表 */
   messageList: Array<IMessageModel>
+}
+/** 标签模型 */
+export interface ITagStore extends ITagModel{
+  tagList: Array<ITagModel>
+}
+/** 分类模型 */
+export interface ICategoryStore extends ICategoryModel{
+  categiryList: Array<ICategoryModel>
 }

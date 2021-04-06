@@ -27,8 +27,6 @@ export const mergeLanguage = (localObj:any): void =>{
       i18n.global.mergeLocaleMessage(key,localObj[key])
     }
   }
-  console.log(i18n.global.getLocaleMessage('zh'));
-  console.log(i18n.global.getLocaleMessage('en'));
 }
 
 export default (app:any)=>{
