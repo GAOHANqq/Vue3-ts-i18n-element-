@@ -140,18 +140,16 @@
 
           <el-col :span="12">
             <el-avatar shape="square" :src="avatar"></el-avatar>
-
             <el-upload
               class="upload-demo"
+              :multiple="false"
               ref="upload"
-              limit="1"
+              accept="image/jpeg,image/gif,image/png"
               :before-upload="beforeUpload"
-              :auto-upload="false"
             >
-                <el-button size="small" type="primary" slot="trigger">选取文件</el-button>
-                <p class="el-upload__tip" slot="tip">支持jpg,jepg,png,gif类型的文件</p>
+              <el-button size="small" type="primary" slot="trigger">选取文件</el-button>
+              <p class="el-upload__tip" slot="tip">支持jpg,jepg,png,gif类型的文件</p>
             </el-upload>
-
           </el-col>
         </el-row>
       </el-main>
@@ -170,6 +168,7 @@ import {getTagsList} from '@/hooks/tag'
 import {validateUserName} from "@/utils/validate";
 import {ACTION_TYPE} from "@/config/action";
 import {useRoute, useRouter} from "vue-router";
+import OSSUpload from "@/plugins/upload/ossUpload";
 export default defineComponent({
   components: {},
   setup(props, ctx) {
@@ -251,8 +250,17 @@ export default defineComponent({
     };
     // 上传头像前文件校验
     const beforeUpload = (file: File)=>{
+      let path:string = `blogimg/${new Date().toLocaleDateString()}/${file.name}`;
 
+      OSSUpload.uploadFile(file,path,(res:any)=>{
+        debugger
+      })
     };
+
+    const upladoFile = ()=>{
+      OSSUpload.getSTSToken('blog')
+    }
+
     // 添加文章
     const addArticle = ()=>{
       state.isShowAddView = true
@@ -293,6 +301,7 @@ export default defineComponent({
 
     onMounted(()=>{
       getList({user_id:1})
+      OSSUpload.getSTSToken('blog')
     })
 
 

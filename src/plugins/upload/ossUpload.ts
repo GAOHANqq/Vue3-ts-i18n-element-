@@ -9,13 +9,13 @@ import OSS from 'ali-oss'
 import md5 from 'js-md5'
 import { getSTSToken } from '@/service/api/user';
 class OSSUpload {
-    private client: any;//oss对象
-    private accessKeyId: string;//授权id
-    private accessKeySecret: string;//授权秘钥
-    private stsToken: string;//临时token
-    private region: string;//区域
-    private bucket: string;//
-    private stsKey = "m0b1ycd2ef3g4hi5jk6lm7op8d9fg1";//加密key
+    private client: any = null;//oss对象
+    private accessKeyId: string = '';//授权id
+    private accessKeySecret: string = '';//授权秘钥
+    private stsToken: string = '';//临时token
+    private region: string = '';//区域
+    private bucket: string = '';//
+    private stsKey = "";//加密key
     initConfig(): void {
         //使用STS临时授权数据初始化OSS对象
         this.client = new OSS({
@@ -38,17 +38,17 @@ class OSSUpload {
             timestamp: timestamp,
             secure: key.toUpperCase()
         }
-        getSTSToken(params).then((res:any)=>{
+      getSTSToken(params).then((res:any)=>{
           this.accessKeyId = res.accessKeyId;
           this.accessKeySecret = res.accessKeySecret;
-          this.stsToken = res.securityToken;
+          this.stsToken = res.stsToken;
           this.region = res.region;
           this.bucket = res.bucket;
           this.initConfig();
           setTimeout(()=> {
             this.getSTSToken(path);
           }, 1000 * 60 * 30);//避免失效，半小时请求一次权限
-        })
+      })
     };
     /**
      * @name: 上传文件
@@ -57,8 +57,10 @@ class OSSUpload {
      * @param cb 进度回调函数
      */
     uploadFile(file: File, filePath: string,cb?:Function): Promise<any> {
+
       return new Promise((resolve, reject) => {
-        window.LOG.INFO("[oss] : 开始上传,文件地址:" + filePath);
+        debugger
+        console.warn("[oss] : 开始上传,文件地址:" + filePath);
         if (!this.client) {
           this.initConfig();
         }
@@ -70,11 +72,12 @@ class OSSUpload {
           }
         }).then((res:any) => {
           //上传完成;
-          window.LOG.INFO("[oss] :上传成功,res:" + res);
+          console.warn("[oss] :上传成功,res:" + res);
           resolve(res)
         }).catch((err:any) => {
+          debugger
           //上传失败
-          window.LOG.ERROR("[oss] :上传失败,res:" + err);
+          console.error("[oss] :上传失败,res:" + err);
           reject(err)
         });
       })

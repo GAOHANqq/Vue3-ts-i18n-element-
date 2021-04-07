@@ -3,20 +3,6 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 
-import {GET} from '@/service/test'
-GET({
-  schoolId: '9229772032d147508d7e8df2dc86144a',
-  userId: '849ca20c940d4d77ad845c54a2662444',
-  firstType: 0,
-  page: 1,
-  limit: 10,
-  hwType: -1,
-  type: 1,
-  subjectId:'',
-  serviceVersion: '4.0'
-})
-
-
 import installElementPlus from '@/plugins/element-plus';
 import installMdEditor from '@/plugins/md-editor';
 import installI18n from '@/lang';

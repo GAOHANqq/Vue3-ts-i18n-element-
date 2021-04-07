@@ -2,7 +2,7 @@
  import QS from 'qs';
  import http from "http";
  import https from "https";
- let pending: any[] = []; // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
+let pending: any[] = []; // 声明一个数组用于存储每个ajax请求的取消函数和ajax标识
  const CancelToken: any = axios.CancelToken;
 
  const removePending: any = (config: any, f: any) => {
@@ -43,40 +43,40 @@
      keepAlive: true
    })
  });
- //
- // /* request拦截器 */
+ /* request拦截器 */
  service.interceptors.request.use((config: any) => {
      // neverCancel 配置项，允许多个请求
-     // if (!config.neverCancel) {
-     //     // 生成cancelToken
-     //     config.cancelToken = new CancelToken((c: any) => {
-     //         removePending(config, c);
-     //     });
-     // }
     config.data = QS.stringify(config.data)
-     // 在这里可以统一修改请求头，例如 加入 用户 token 等操作
-     //   if (store.getters.sessionId) {
-     //     config.headers['X-SessionId'] = getSessionId(); // 让每个请求携带token--['X-Token']为自定义key
-     //   }
+     
+    //    if (store.getters.sessionId) {
+    //      config.headers.token = 
+    //    }
      return config;
  }, (error: any) => {
      Promise.reject(error);
  });
-
+ 
  /* respone拦截器 */
  service.interceptors.response.use(
      (response: any) => {
          // 移除队列中的该请求，注意这时候没有传第二个参数f
         //  removePending(response.config);
          // 获取返回数据，并处理。按自己业务需求修改。下面只是个demo
-       let _data = null;
-       if( response.data.code ){
-         _data =  response.data.data;
-       }
-       return _data;
+         const res = response.data;
+         if (res.code !== 200) {
+             if (res.code === 401) {
+                 if (location.hash === '#/') {
+                     return res;
+                 } else {
+                     location.href = '/#/';
+                 }
+             }
+             return Promise.reject('error');
+         } else {
+             return response;
+         }
      },
      (error: any) => {
-
          // 异常处理
          console.log(error)
          pending = [];

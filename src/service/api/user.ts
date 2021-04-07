@@ -13,7 +13,7 @@ export const register = (params: {username: string, password: string})=>{
 }
 // 获取STS授权
 export const getSTSToken = (params: any)=>{
-  return API.POST('users/getSTSToken', params);
+  return API.POST('base/getSTSToken', params);
 }
 
 
